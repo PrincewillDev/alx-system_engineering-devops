@@ -1,2 +1,2 @@
 #!/bin/bash
-chown vincent:staff -R 0x01-shell_permissions
+chown vincent:staff -R /root/alx-system_engineering-devops/0x01-shell_permissions
