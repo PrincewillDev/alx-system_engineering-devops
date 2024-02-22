@@ -8,11 +8,11 @@ while ((i<=10))
 do
 	if ((i==4))
 	then
-		echo "badluck"
+		echo "bad luck"
 
 	elif ((i==8))
 	then
-		echo "goodluck"
+		echo "good luck"
 
 	else
 		echo "Best School"
