@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This scripts emulates a 12 hour clock
+o=0
+i=1
+
+while ((o<=12))
+do
+	echo "Hour: $o"
+	while((i<=59))
+	do
+		echo $i
+		((i++))
+	done
+	i=1
+	((o++))
+done
