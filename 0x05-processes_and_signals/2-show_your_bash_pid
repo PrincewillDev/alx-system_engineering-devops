@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script displays lists of current running process
+# Only showing lines with just bash process
+
+ps auxf | grep bash
