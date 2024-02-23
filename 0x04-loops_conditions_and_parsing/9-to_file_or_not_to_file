@@ -14,8 +14,7 @@ then
 
     if [ -f "school" ];
     then
-        echo "school is a regular file" 
-
+        echo "school is a regular file"
     fi
 
 else
