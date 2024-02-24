@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script print text to stdout indefinitely and avoid sigterm kill signal
+
+trap 'echo "I am invincible!!!"' SIGTERM
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
