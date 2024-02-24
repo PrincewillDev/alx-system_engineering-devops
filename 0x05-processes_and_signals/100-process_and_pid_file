@@ -3,13 +3,29 @@
 # how the process communicate with signals and also
 # creating and deleting a file
 
-sudo touch /var/run/myscript.pid && echo $$ | sudo tee -i /var/run/myscript.pid > /dev/null
-trap 'echo "I hate the kill command"' SIGTERM;
-trap 'echo "Y U no love me?!"' SIGINT;
-trap 'sudo rm /var/run/myscript.pid; exit' SIGQUIT SIGTERM;
+sigterm_manager()
+{
+	echo "I hate the kill command"
+	sigquit_manager
+}
 
-while true
-do
-	echo "To infinity and beyond"
-	sleep 2
+sigint_manager()
+{
+	echo "Y U no love me?!"
+}
+
+sigquit_manager()
+{
+	rm -f /var/run/myscript.pid
+	exit
+}
+
+trap sigterm_manager SIGTERM
+trap sigint_manager SIGINT
+trap sigquit_manager SIGQUIT
+
+echo $$ > /var/run/myscript.pid
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
 done
