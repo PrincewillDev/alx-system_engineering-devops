@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# This script handles signals by running a process and controlling
+# how the process communicate with signals and also
+# creating and deleting a file
 
 sudo touch /var/run/myscript.pid && echo $$ | sudo tee -i /var/run/myscript.pid > /dev/null
 trap 'echo "I hate the kill command"' SIGTERM
