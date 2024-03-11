@@ -2,13 +2,9 @@
 
 # Bash Script to automate Git operations
 
-echo "Enter filename to be added"
-read filename
-
-echo "Enter Git Commit Message"
+echo "Enter Commit Message"
 read message
 
-git add "$filename"
-git commit "$message"
+git add .
+git commit -m "$message"
 git push
-
