@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Script configures an Ubuntu server with certain requirements
+
+# Create a copy of /etc/hosts file
+sudo cp /etc/hosts ~/hosts.tmp
+
+# Resolve local host to 127.0.0.2 in copy
+sed -i 's/127.0.0.1\tlocalhost/127.0.0.2\tlocalhost/' ~/hosts.tmp
+
+# Resolve facebook.com to 8.8.8.8 in copy
+sed -i '$a\8.8.8.8\tfacebook.com' ~/hosts.tmp
+
+# Copy /etc/hosts copy into main
+sudo cp ~/hosts.tmp /etc/hosts
+
+# Delete copy of /etc/hosts file
+rm ~/hosts.tmp
