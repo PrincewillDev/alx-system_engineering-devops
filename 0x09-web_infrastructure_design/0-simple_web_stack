@@ -1,1 +1,24 @@
 https://www.flickr.com/photos/200449481@N07/53649948383/in/dateposted-public/
+
+Web-Stack
+A server is a computer or system that provides resources, data, services, or programs to other computers, known as clients, over a network.
+
+The domain name is a human-friendly address, linked to the server's IP address, which is used to access a website.
+
+The 'www' in a URL is a type of DNS record known as a CNAME (Canonical Name) record, which is used to alias one name to another.
+
+A web server's role is to accept HTTP requests from clients (browsers), and send back HTTP responses, such as HTML pages, images, etc.
+
+An application server's role is to host and expose business logic and processes to client applications.
+
+The database's role is to store, retrieve, and manage data requested by other software applications.
+
+The server communicates with the user's computer via protocols, such as HTTP or HTTPS.
+
+As for the issues with the infrastructure you mentioned:
+
+Single Point of Failure (SPOF) here is the server because If it fails, the entire system can go down.
+
+Downtime for maintenance: If the web server needs to be restarted for deploying new code, the website becomes temporarily unavailable.
+
+Scalability issues: If there's too much incoming traffic, the server might not be able to handle the load, leading to slow response times or even crashes.
