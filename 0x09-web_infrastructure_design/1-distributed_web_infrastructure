@@ -1,1 +1,21 @@
 https://www.flickr.com/photos/200449481@N07/53649900402/in/dateposted-public/
+
+The reason for adding more elements to the infrastructure is ensure high level avaliabilty, reliability and scalabilty. As the user scale adding more servers and a load balancer make sure that the program run efficiently and also removing the initial SPOF.
+
+The load balancer uses the round-robin algorithm, in this case the load balancer evenly distributes traffic among the servers, this ensures that client request are been attended to evenly.
+
+The load balancer uses the active-active setup. Using the active-active set up ensures that all servers are running and active while the load balancer distributes traffic to all servers equally, so if a server goes down the load balancer stops distributing traffic to the server not running and only distributes to the servers running.
+
+Active - passive is when a server is running and the other server in passive mode is on standby while the load balancer only distributes traffic to the active server, if the active server goes down then the passive server becomes active and start runnning.
+
+In this infrastructure setup the Primary(Master) database handles the read and write operations while the Replica(Slave) is the copy of the primary database, so when the primary or master database goes down the Replica or Slave database becomes the backup and acts as the primary database. This ensures reliabilty of data and availibilty just incase the Primary database fail.
+
+So the Primary node in this infrastructure setup handles the read and write operations, while the Repilca node handles the read operations. This typically improves perfomance and prevent the Primary node from handling all read operations.
+
+Issues:
+
+The single point of failure here is the load balancer, because if the load balancer fails then routing traffic from the client will not be sent to the servers and that will make the service to and from the server go down, shutting the application down.
+
+In this infrastructure setup there are no firewall, there by exposing the servers to illegal or malicious attacks or access.
+
+In this infrastructure setup there are no monitoring service so there is no way to monitor the health of the servers and load balancers so they can fail without us noticing there by shutting down the service and running applications.
