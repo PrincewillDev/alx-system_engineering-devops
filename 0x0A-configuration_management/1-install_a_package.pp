@@ -1,3 +1,5 @@
+# Installed Flask package
 package { 'Flask':
-  ensure = 
+  ensure   => '2.1.0',
+  provider => 'pip3',
 }
