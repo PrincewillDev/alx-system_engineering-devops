@@ -1,4 +1,5 @@
-# Set up client SSH configuration file so user can connect without password
+# Set up client SSH configuration file
+#so user can connect without password
 file_line {'Turn off passwd auth':
 	ensure => 'present',
 	path => '/etc/ssh/ssh_config',
