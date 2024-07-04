@@ -2,17 +2,17 @@
 # This script is installing Nginx web server on my server
 
 # Update the package list
-sudo apt-get update
+apt-get update
 
 # Install Nginx
-sudo apt-get install -y nginx
-
-# Ensure Nginx is running
-sudo service nginx start
+apt-get install -y nginx
 
 #configure server to allow request from port 8
-sudo ufw allow 'Nginx Http'
+ufw allow 'Nginx HTTP'
 
 # Create a new index.html with "Hello World!" content
-echo 'Hello World!' > sudo tee /var/www/html/index.html
+echo 'Hello World!' > /var/www/html/index.html
+
+# Ensure Nginx is running
+service nginx start
 
