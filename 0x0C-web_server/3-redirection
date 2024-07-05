@@ -1,44 +1,21 @@
 #!/usr/bin/env bash
-# 301 redirection script
+# Installs Nginx on a web server and configures it such that /redirect_me is redirecting to another page
 
-apt-get update
-apt-get -y install nginx
+# Get package updates
+sudo apt-get -y update
 
-# Allow HTTP traffic on port 80 through the firewall
+# Install Nginx
+sudo apt-get -y install nginx
+
+# Configure Nginx to listen on port 80
 sudo ufw allow 'Nginx HTTP'
 
-# Set up web directory and permissions; directory already exists
-# but will keep line for idempotency and script reusability for automation on another server
-mkdir -p /var/www/html/
-sudo chmod -R 755 /var/www
+# Configure Nginx to serve a page which displays 'Hello World!' when it receives a GET request
+echo 'Hello World!' | sudo tee /var/www/html/index.html
 
-# Create a simple HTML file
-echo 'Hello World!' > /var/www/html/index.html
+# Initiate redirection
+rewrite_directive="\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "/server_name _/a\ $rewrite_directive" /etc/nginx/sites-available/default
 
-# Define Nginx configuration with redirection
-# Backslash to mark continuity
-# default_server string on both IPV4 and IPV6 signify just one server
-CONFIGURE_SERVER=\
-"server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.htm index.html index.nginx-debian.html;
-    server_name _;
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}"
-
-# Apply the Nginx configuration
-bash -c "echo -e '$CONFIGURE_SERVER' > /etc/nginx/sites-enabled/default"
-
-# Start or restart Nginx
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-    service nginx start
-else
-    service nginx restart
-fi
+# Restart Nginx
+sudo service nginx restart
