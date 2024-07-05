@@ -108,3 +108,7 @@ Here's a README file based on your provided task:
 ---
 
 This README should provide clear instructions for obtaining and setting up a free .TECH domain, as well as configuring DNS records and updating the project URL.
+
+3-redirection - This script configures Nginx server so that file /redirect_me is redirecting to another page.
+
+4-not_found_page_404 - This script configure my Nginx server to have a custom 404 page that contains the string "Ceci n'est pas une page"
