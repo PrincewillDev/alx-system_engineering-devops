@@ -28,6 +28,6 @@ sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_code_404.html
 sudo sed -i '25i\	error_page 404 /error_code_404.html;' /etc/nginx/sites-available/default
 sudo sed -i '26i\       add_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
 # Restart nginx
-sudo service nginx restart
+sudo systemctl start nginx
 
 echo -e "\nRedirection Complete.\n"
