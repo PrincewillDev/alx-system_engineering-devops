@@ -8,11 +8,18 @@ import requests
 
 
 def number_of_subscribers(subreddit):
+    if type(subreddit) is not str:
+        return 0
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    header = {"User-Agent": "Mozilla/5.0"}
+    header = {"User-Agent": "0x16. API advanced (Princewill_Fidelis)"}
     response = requests.get(url, headers=header, allow_redirects=False)
+    try:
+        if response.status_code == 200:
+            data = response.json()
+            subscribers = data['data']['subscribers']
+            return subscribers
+        else:
+            return 0
 
-    if response.status_code == 200:
-        return response.json().get('data').get('subscribers')
-    else:
+    except Exception as e:
         return 0
