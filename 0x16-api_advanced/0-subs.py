@@ -8,10 +8,16 @@ import requests
 
 
 def number_of_subscribers(subreddit):
+    """ Returns the number of subscribers of a given subreddit.
+    Args:
+        subreddit(str): Subreddit
+    Return:
+        (int): Number of subscribers to subreddit or 0 on fail.
+    """
     if type(subreddit) is not str:
         return 0
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    header = {"User-Agent": "0x16. API advanced (Princewill_Fidelis)"}
+    header = {"User-Agent": "0x16. API advanced (by Princewill_Fidelis)"}
     response = requests.get(url, headers=header, allow_redirects=False)
     try:
         if response.status_code == 200:
