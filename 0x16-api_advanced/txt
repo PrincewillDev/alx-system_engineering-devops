@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Contains a function that returns the number of subscribers to a given
-subreddit.
+This module contains a function that queries the Reddit
+API and returns the number of subscribers for a given subreddit.
 """
 import requests
 
@@ -15,18 +15,16 @@ def number_of_subscribers(subreddit):
     """
     if subreddit is None or type(subreddit) is not str:
         return 0
-
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    headers = {'User-Agent': '0x16-api_advanced:project (by dev_niniolax)'}
-
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    header = {"User-Agent": "0x16. API advanced (by Princewill_Fidelis)"}
     try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
+        response = requests.get(url, headers=header, allow_redirects=False)
         if response.status_code == 200:
             data = response.json()
-            subscriber_count = data['data']['subscribers']
-            return subscriber_count
+            subscribers = data['data']['subscribers']
+            return subscribers
         else:
             return 0
+
     except Exception as e:
-        # print('Error fetching subreddit: {}'.format(e))
         return 0
